@@ -2,3 +2,54 @@
     margin: 0;
     padding: 0;
 }
+
+body{
+    background-color: #2B2D42;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header{
+    height: 3rem;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1{
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.header span{
+    color: #F8F32B;
+}
+
+.container{
+    background-color: #8D99AE;
+    min-height: 20rem;
+    max-width: 20rem;
+    padding: 3rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.box{
+    height: 6rem;
+    width: 6rem;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
