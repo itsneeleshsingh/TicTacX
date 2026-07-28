@@ -1,5 +1,11 @@
 let boxes = document.querySelectorAll(".box");
 let turnX=true;
+let winnerTxt = document.querySelector(".winnerTxt");
+let menu = document.querySelector(".menu");
+let containerB = document.querySelector(".container");
+let restartBtn = document.querySelector("#restartBtn");
+let resetBtn = document.querySelector("#resetBtn");
+let optionsBar = document.querySelector(".optionsBar");
 
 const winPattern = [
     [0,1,2],
@@ -24,8 +30,25 @@ boxes.forEach((box) => {
         box.disabled = true;
 
         checkWinner();
+        checkDraw();
     })
 })
+
+const checkDraw = () => {
+    let allFilled = true;
+    for(let box of boxes){
+        if(box.innerHTML == ""){
+            allFilled = false;
+            break;
+        }
+    }
+    if(allFilled == true){
+        winnerTxt.innerHTML = `Oops! There is a Draw`;
+        containerB.style.display = "none";
+        optionsBar.style.display = "none";
+        menu.style.display = "flex";
+    }
+}
 
 const checkWinner = () => {
     for(let pattern of winPattern){
@@ -35,8 +58,29 @@ const checkWinner = () => {
 
         if(posVal1!="" && posVal2!="" && posVal3!=""){
             if(posVal1==posVal2 && posVal2==posVal3){
-                console.log("winner",posVal1);
+                winnerTxt.innerHTML = `Congratulations! Winner is ${posVal1} player`;
+                containerB.style.display = "none";
+                optionsBar.style.display = "none";
+                menu.style.display = "flex";
             }
         }
     }
 }   
+
+let enableBoxes = () => {
+    for(let box of boxes){
+        box.disabled = false;
+        box.innerHTML="";
+    }
+}
+
+const resetGame = () => {
+    turnX=true;
+    enableBoxes();
+    containerB.style.display = "flex";
+    optionsBar.style.display = "block";
+    menu.style.display = "none";
+}
+
+restartBtn.addEventListener("click",resetGame);
+resetBtn.addEventListener("click",resetGame);

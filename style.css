@@ -27,8 +27,9 @@ body{
 
 .container{
     background-color: #8D99AE;
-    height: 45vh;
-    padding: 3rem;
+    width: 85vw;
+    max-width: 400px;
+    padding: 2rem 1rem;
     border-radius: 1rem;
     display: flex;
     justify-content: center;
@@ -37,16 +38,16 @@ body{
 
 .game{
     display: flex;
-    height: 40vh;
-    width: 40vh;
+    aspect-ratio: 1 / 1;
+    width: 100%;
     flex-wrap: wrap;
-    gap: 0.7rem;
+    gap: 2%;
 }
 
 .box{
-    height: 12vh;
-    width: 12vh;
-    font-size: 7vh;
+    height: 32%;
+    width: 32%;
+    font-size: 3rem;
     font-weight: 550;
     border: 1px solid black;
     border-radius: 1vh;
@@ -55,7 +56,7 @@ body{
 
 .box:disabled{
     opacity: 1;
-    font-size: 7vh;
+    font-size: 3rem;
     font-weight: 550;
     border: 1px solid black;
     border-radius: 1vh;
@@ -68,4 +69,39 @@ main{
     justify-content: center;
     align-items: center;
     margin-top: 5rem;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.menu{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1vh;
+    padding: 0vh 2vh 0vh 2vh;
+}
+
+.menu h1{
+    color: #F8F32B;
+}
+
+#restartBtn{
+    border: none;
+    padding: 2px 8px 2px 8px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    height: 4vh;
+}
+
+.optionsBar{
+
+}
+
+#resetBtn{
+    border: none;
+    padding: 2px 8px 2px 8px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    height: 4vh;
 }
