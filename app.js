@@ -22,15 +22,19 @@ boxes.forEach((box) => {
     box.addEventListener("click",() => {
         if(turnX){
             box.innerHTML = "X";
+            box.setAttribute("data-player","X");
             turnX=false;
         }else{
             box.innerHTML = "O";
+            box.setAttribute("data-player","O");
             turnX=true;
         }
         box.disabled = true;
 
-        checkWinner();
-        checkDraw();
+        if(!checkWinner()){
+            checkDraw();
+        }
+        
     })
 })
 
@@ -62,14 +66,17 @@ const checkWinner = () => {
                 containerB.style.display = "none";
                 optionsBar.style.display = "none";
                 menu.style.display = "flex";
+                return true;
             }
         }
     }
-}   
+    return false;
+};
 
 let enableBoxes = () => {
     for(let box of boxes){
-        box.disabled = false;
+        box.disabled = false;   
+        box.removeAttribute("data-player");
         box.innerHTML="";
     }
 }
@@ -84,3 +91,13 @@ const resetGame = () => {
 
 restartBtn.addEventListener("click",resetGame);
 resetBtn.addEventListener("click",resetGame);
+
+
+// Dark Theme
+let toggleDarkBtn = document.querySelector("#toggleThemeBtn");
+toggleDarkBtn.addEventListener("click",() => {
+    let currentTheme = document.body.getAttribute("data-theme");
+    if(currentTheme === "light"){
+        document.body.removeAttribute("data-theme");
+    }else document.body.setAttribute("data-theme","light");
+});

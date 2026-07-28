@@ -12,9 +12,38 @@ body{
     height: 3rem;
     background-color: #000000;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 1.8rem;
     align-items: center;
 }
+
+.header-spacer, .headerMenu {
+    width: 40px; 
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#toggleThemeBtn{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    border: solid 2px #F8F32B;
+}
+
+.sun-icon{
+    display: none !important;
+}
+.moon-icon{
+    display: inline-block !important;
+}
+body[data-theme="light"] .sun-icon{
+    display: inline-block !important;
+}
+body[data-theme="light"] .moon-icon{
+    display: none !important;
+}
+
 
 .header h1{
     color: #fff;
@@ -44,24 +73,52 @@ body{
     gap: 2%;
 }
 
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .box{
     height: 32%;
     width: 32%;
     font-size: 3rem;
-    font-weight: 550;
-    border: 1px solid black;
-    border-radius: 1vh;
-    background-color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.2 ease;
+}
+
+.box:hover:not(:disabled){
+    background-color: #f0f0f0;
 }
 
 .box:disabled{
     opacity: 1;
     font-size: 3rem;
-    font-weight: 550;
-    border: 1px solid black;
-    border-radius: 1vh;
-    background-color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    cursor: pointer;
     color: #000;
+    animation: popIn 0.1s ease-out forwards;
+}
+
+.box[data-player="X"]{
+    color: #2B2D42;
+}
+
+.box[data-player="O"]{
+    color: #ef4444;
 }
 
 main{
@@ -83,25 +140,28 @@ main{
 }
 
 .menu h1{
-    color: #F8F32B;
+    color: #ffffff;
 }
 
-#restartBtn{
+#restartBtn,#resetBtn{
     border: none;
-    padding: 2px 8px 2px 8px;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-    height: 4vh;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #F8F32B;
+    color: #2B2D42;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.1s ease, background-color 0.2s;
+    height: auto; 
 }
 
-.optionsBar{
-
+#resetBtn:hover, #restartBtn:hover {
+    background-color: #e5df25;
+    transform: translateY(-2px);
 }
 
-#resetBtn{
-    border: none;
-    padding: 2px 8px 2px 8px;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-    height: 4vh;
+#resetBtn:active, #restartBtn:active {
+    transform: translateY(0);
 }
