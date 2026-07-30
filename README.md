@@ -19,6 +19,22 @@ TicTacX is a modern, feature-rich web version of the classic Tic-Tac-Toe game. I
 
 ---
 
+## How the Minimax AI Works
+
+To make the computer smart instead of just picking random spots, I implemented the **Minimax algorithm**. 
+
+Instead of guessing, the computer uses **recursion and backtracking** to look into the future:
+1. **Simulating Moves:** The algorithm loops through every empty box on the board and pretends to place a computer move.
+2. **Thinking Ahead (Recursion):** For every test move it makes, it then simulates what the human player would do next, repeating this process back and forth until the game reaches a win, loss, or tie.
+3. **Backtracking:** Once it finishes checking a future scenario, it clears ("undoes") the test move from the board so it can test the next empty box safely.
+4. **Scoring:** It gives points for a win, negative points for a loss, and zero for a draw. Because it wants to win, it always picks the path that leads to the highest score, making it unbeatable.
+
+Note: Here I also used depth with the 10 points to make the computer win in as much less steps it can.
+
+![Minimax Algorithm Explanation](images/minimax-algo.webp)
+
+---
+
 ## Preview & UI Gallery
 
 ### Header Menu Controls
