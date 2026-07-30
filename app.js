@@ -19,6 +19,10 @@ let infoBtn = document.querySelector("#infoBtn");
 let shortcutsModal = document.querySelector("#shortcutsModal");
 let closeModalBtn = document.querySelector("#closeModalBtn");
 
+let vsCpuBtn = document.querySelector("#vsCpuBtn");
+let vsPvpBtn = document.querySelector("#vsPvpBtn");
+let cpuMode=true;
+
 const winPattern = [
     [0,1,2],
     [3,4,5],
@@ -36,6 +40,7 @@ boxes.forEach((box) => {
             boxClickS.currentTime=0;
             boxClickS.play();
         }
+
         if(turnX){
             box.innerHTML = "X";
             box.setAttribute("data-player","X");
@@ -50,9 +55,22 @@ boxes.forEach((box) => {
         if(!checkWinner()){
             checkDraw();
         }
+
+        if(cpuMode && !turnX){
+            triggerComputerMove();
+        }
         
     })
 });
+
+const triggerComputerMove = () => {
+    setTimeout(() => {
+        let bestMoveIndex = getBestMove();
+        if (bestMoveIndex !== null && boxes[bestMoveIndex].innerHTML === "") {
+            boxes[bestMoveIndex].click(); 
+        }
+    },500);
+};
 
 const checkDraw = () => {
     let allFilled = true;
@@ -174,3 +192,87 @@ document.addEventListener("click", (event) => {
         shortcutsModal.style.display = "none";
     }
 });
+
+//Computer mode
+vsPvpBtn.addEventListener("click",() => {
+    cpuMode=false;
+    vsPvpBtn.classList.toggle("active");
+    vsCpuBtn.classList.toggle("active");
+});
+
+vsCpuBtn.addEventListener("click",() => {
+    cpuMode=true;
+    vsCpuBtn.classList.toggle("active");
+    vsPvpBtn.classList.toggle("active");
+});
+
+const getBestMove = () => {
+    let bestScore=-Infinity;
+    let bestMove = null;
+
+    for(let i=0;i<boxes.length;i++){
+        if(boxes[i].innerHTML === ""){
+            boxes[i].innerHTML = "O";
+            let score = minimax(boxes,0,false);
+            boxes[i].innerHTML = "";
+
+            if(score>bestScore){
+                bestScore = score;
+                bestMove = i;
+            }
+        }
+    }
+    return bestMove;
+};
+
+const minimax = (currentBoxes,depth,isMaximising) => {
+    if(checkWinForPlayer("O")) return 10-depth;
+    if(checkWinForPlayer("X")) return depth-10;
+    if(isBoardFull()) return 0;
+
+    if(isMaximising){
+        let maxScore = -Infinity;
+        for(let i=0;i<currentBoxes.length;i++){
+            if(currentBoxes[i].innerHTML === ""){
+                currentBoxes[i].innerHTML = "O";
+                let score = minimax(currentBoxes,depth+1,false);
+                currentBoxes[i].innerHTML = "";
+                maxScore = Math.max(maxScore,score);
+            }
+        }
+        return maxScore;
+    }else{
+        let minScore = Infinity;
+        for(let i=0;i<currentBoxes.length;i++){
+            if(currentBoxes[i].innerHTML === ""){
+                currentBoxes[i].innerHTML = "X";
+                let score = minimax(currentBoxes,depth+1,true);
+                currentBoxes[i].innerHTML = "";
+                minScore = Math.min(minScore,score);
+            }
+        }
+        return minScore;
+    }
+};
+
+const checkWinForPlayer = (player) => {
+    for (let pattern of winPattern) {
+        let posVal1 = boxes[pattern[0]].innerHTML;
+        let posVal2 = boxes[pattern[1]].innerHTML;
+        let posVal3 = boxes[pattern[2]].innerHTML;
+
+        if (posVal1 === player && posVal2 === player && posVal3 === player) {
+            return true;
+        }
+    }
+    return false;
+};
+
+const isBoardFull = () => {
+    for (let box of boxes) {
+        if (box.innerHTML === "") {
+            return false;
+        }
+    }
+    return true;
+};
