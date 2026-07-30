@@ -2,6 +2,8 @@
 
 TicTacX is a modern, feature-rich web version of the classic Tic-Tac-Toe game. Instead of a normal basic Tic-Tac-Toe, I have built a complete, polished project that includes advanced features, keyboard shortcuts, multi-mode gameplay, and an intelligent computer opponent.
 
+**Live Demo:** [https://itsneeleshsingh.github.io/TicTacX/](https://itsneeleshsingh.github.io/TicTacX/)
+
 ![Main Game Interface](images/normalMain.jpg)
 
 ---
