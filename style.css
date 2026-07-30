@@ -3,9 +3,25 @@
     padding: 0;
 }
 
+:root {
+    --bg-color: #2B2D42;
+    --container-bg: #8D99AE;
+    --box-bg: #FFFFFF;
+    --text-color: #FFFFFF;
+}
+
+[data-theme="light"] {
+    --bg-color: #F8F9FA;
+    --container-bg: #E9ECEF;
+    --box-bg: #FFFFFF;
+    --text-color: #2B2D42;
+}
+
 body{
-    background-color: #2B2D42;
+    background-color: var(--bg-color);
     font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-color);
+    transition: background-color 0.1s ease;
 }
 
 .header{
@@ -60,7 +76,7 @@ body[data-theme="light"] .moon-icon{
 }
 
 .container{
-    background-color: #8D99AE;
+    background-color: var(--container-bg);
     width: 85vw;
     max-width: 400px;
     padding: 2rem 1rem;
@@ -96,7 +112,7 @@ body[data-theme="light"] .moon-icon{
     font-weight: bold;
     border: none;
     border-radius: 12px;
-    background-color: #ffffff;
+    background-color: var(--box-bg);
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     transition: background-color 0.2 ease;
@@ -160,7 +176,7 @@ main{
 }
 
 .menu h1{
-    color: #ffffff;
+    color: var(--text-color);
 }
 
 #restartBtn,#resetBtn{
@@ -219,7 +235,7 @@ main{
 }
 
 .modal-content {
-    background-color: #2B2D42;
+    background-color: var(--bg-color);
     border: 2px solid #F8F32B;
     padding: 2rem;
     border-radius: 12px;
@@ -228,12 +244,12 @@ main{
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    color: #ffffff;
+    color: var(--text-color);
     box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
 .modal-content h2 {
-    color: #F8F32B;
+    color: var(--text-color);
     text-align: center;
     font-size: 1.4rem;
 }
@@ -256,7 +272,7 @@ main{
 
 .shortcuts-list li span:first-child {
     font-weight: bold;
-    color: #F8F32B;
+    color: var(--text-color);
 }
 
 #closeModalBtn {
