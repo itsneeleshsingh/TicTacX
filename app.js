@@ -15,6 +15,10 @@ let winS = new Audio("sounds/winSound.mp3");
 
 let toggleDarkBtn = document.querySelector("#toggleThemeBtn");
 
+let infoBtn = document.querySelector("#infoBtn");
+let shortcutsModal = document.querySelector("#shortcutsModal");
+let closeModalBtn = document.querySelector("#closeModalBtn");
+
 const winPattern = [
     [0,1,2],
     [3,4,5],
@@ -48,7 +52,7 @@ boxes.forEach((box) => {
         }
         
     })
-})
+});
 
 const checkDraw = () => {
     let allFilled = true;
@@ -139,5 +143,34 @@ muteBtn.addEventListener("click",() => {
     }else{
         muteBtn.classList.remove("muteBtnX");
         isMute=false;
+    }
+});
+
+
+//keyboard shortcuts
+document.addEventListener("keydown",(event) => {
+    if(event.key >= "1" && event.key <= "9"){
+        let index = parseInt(event.key)-1;
+        if(boxes[index] && !boxes[index].disabled){
+            boxes[index].click();
+        }
+    }
+    if(event.key.toLowerCase() === "r"){
+        resetGame();
+    }
+});
+
+//keyboard info
+infoBtn.addEventListener("click",() => {
+    shortcutsModal.style.display = "flex";
+});
+
+closeModalBtn.addEventListener("click",() => {
+    shortcutsModal.style.display = "none";
+});
+
+document.addEventListener("click", (event) => {
+    if(event.target === shortcutsModal){
+        shortcutsModal.style.display = "none";
     }
 });
