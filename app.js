@@ -82,6 +82,9 @@ const checkWinner = () => {
                     winS.currentTime=0;
                     winS.play();
                 }
+                boxes[pattern[0]].classList.add("winBoxPulse");
+                boxes[pattern[1]].classList.add("winBoxPulse");
+                boxes[pattern[2]].classList.add("winBoxPulse");
                 winnerTxt.innerHTML = `Congratulations! Winner is ${posVal1} player`;
                 optionsBar.style.display = "none";
                 menu.style.display = "flex";
@@ -97,6 +100,7 @@ let enableBoxes = () => {
     for(let box of boxes){
         box.disabled = false;   
         box.removeAttribute("data-player");
+        box.classList.remove("winBoxPulse");
         box.innerHTML="";
     }
 }

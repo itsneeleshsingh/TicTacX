@@ -106,7 +106,7 @@ body[data-theme="light"] .moon-icon{
     background-color: #f0f0f0;
 }
 
-.box:disabled{
+.box:disabled:not(:empty){
     opacity: 1;
     font-size: 3rem;
     font-weight: bold;
@@ -116,6 +116,16 @@ body[data-theme="light"] .moon-icon{
     cursor: pointer;
     color: #000;
     animation: popIn 0.1s ease-out forwards;
+}
+.box:disabled:empty{
+    opacity: 1;
+    font-size: 3rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    cursor: pointer;
+    color: #000;
 }
 
 .box[data-player="X"]{
@@ -174,4 +184,23 @@ main{
 
 #resetBtn:active, #restartBtn:active {
     transform: translateY(0);
+}
+
+@keyframes winBoxAnimate{
+    0%{
+        transform: scale(1);
+        background-color: #ffffff;
+    }
+    50%{
+        transform: scale(1.02);
+        background-color: #F8F32B;
+    }
+    100%{
+        transform: scale(1);
+        background-color: #ffffff;
+    }
+}
+
+.winBoxPulse{
+    animation: winBoxAnimate 1s ease-in-out infinite !important;
 }
