@@ -22,6 +22,7 @@ let closeModalBtn = document.querySelector("#closeModalBtn");
 let vsCpuBtn = document.querySelector("#vsCpuBtn");
 let vsPvpBtn = document.querySelector("#vsPvpBtn");
 let cpuMode=true;
+let isAIThinking = false;
 
 const winPattern = [
     [0,1,2],
@@ -36,6 +37,7 @@ const winPattern = [
 
 boxes.forEach((box) => {
     box.addEventListener("click",() => {
+        if(isAIThinking) return;
         if(!isMute){
             boxClickS.currentTime=0;
             boxClickS.play();
@@ -57,6 +59,7 @@ boxes.forEach((box) => {
         }
 
         if(cpuMode && !turnX){
+            isAIThinking = true;
             triggerComputerMove();
         }
         
@@ -67,9 +70,11 @@ const triggerComputerMove = () => {
     setTimeout(() => {
         let bestMoveIndex = getBestMove();
         if (bestMoveIndex !== null && boxes[bestMoveIndex].innerHTML === "") {
+            isAIThinking = false;
             boxes[bestMoveIndex].click(); 
         }
-    },500);
+        else isAIThinking = false;
+    },200);
 };
 
 const checkDraw = () => {
