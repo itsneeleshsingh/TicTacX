@@ -7,6 +7,14 @@ let restartBtn = document.querySelector("#restartBtn");
 let resetBtn = document.querySelector("#resetBtn");
 let optionsBar = document.querySelector(".optionsBar");
 
+let isMute = false;
+let muteBtn = document.querySelector("#muteBtn");
+let boxClickS = new Audio("sounds/boxClick.mp3");
+let drawS = new Audio("sounds/drawSound.mp3");
+let winS = new Audio("sounds/winSound.mp3");
+
+let toggleDarkBtn = document.querySelector("#toggleThemeBtn");
+
 const winPattern = [
     [0,1,2],
     [3,4,5],
@@ -20,6 +28,10 @@ const winPattern = [
 
 boxes.forEach((box) => {
     box.addEventListener("click",() => {
+        if(!isMute){
+            boxClickS.currentTime=0;
+            boxClickS.play();
+        }
         if(turnX){
             box.innerHTML = "X";
             box.setAttribute("data-player","X");
@@ -47,10 +59,14 @@ const checkDraw = () => {
         }
     }
     if(allFilled == true){
+        if(!isMute){
+            drawS.currentTime=0;
+            drawS.play();
+        }
         winnerTxt.innerHTML = `Oops! There is a Draw`;
-        containerB.style.display = "none";
         optionsBar.style.display = "none";
         menu.style.display = "flex";
+        disableBoxes();
     }
 }
 
@@ -62,10 +78,14 @@ const checkWinner = () => {
 
         if(posVal1!="" && posVal2!="" && posVal3!=""){
             if(posVal1==posVal2 && posVal2==posVal3){
+                if(!isMute){
+                    winS.currentTime=0;
+                    winS.play();
+                }
                 winnerTxt.innerHTML = `Congratulations! Winner is ${posVal1} player`;
-                containerB.style.display = "none";
                 optionsBar.style.display = "none";
                 menu.style.display = "flex";
+                disableBoxes();
                 return true;
             }
         }
@@ -81,10 +101,15 @@ let enableBoxes = () => {
     }
 }
 
+let disableBoxes = () => {
+    for(let box of boxes){
+        box.disabled = true;   
+    }
+}
+
 const resetGame = () => {
     turnX=true;
     enableBoxes();
-    containerB.style.display = "flex";
     optionsBar.style.display = "block";
     menu.style.display = "none";
 }
@@ -94,10 +119,21 @@ resetBtn.addEventListener("click",resetGame);
 
 
 // Dark Theme
-let toggleDarkBtn = document.querySelector("#toggleThemeBtn");
 toggleDarkBtn.addEventListener("click",() => {
     let currentTheme = document.body.getAttribute("data-theme");
     if(currentTheme === "light"){
         document.body.removeAttribute("data-theme");
     }else document.body.setAttribute("data-theme","light");
+});
+
+
+//Mute Button
+muteBtn.addEventListener("click",() => {
+    if(!isMute){
+        muteBtn.classList.add("muteBtnX");
+        isMute=true;
+    }else{
+        muteBtn.classList.remove("muteBtnX");
+        isMute=false;
+    }
 });

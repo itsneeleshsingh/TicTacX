@@ -22,9 +22,10 @@ body{
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 0.3vw;
 }
 
-#toggleThemeBtn{
+#toggleThemeBtn, .round-btn{
     cursor: pointer;
     padding: 5px;
     border-radius: 50%;
@@ -44,6 +45,10 @@ body[data-theme="light"] .moon-icon{
     display: none !important;
 }
 
+.muteBtnX{
+    background-color: red;
+    color: #ffffff;
+}
 
 .header h1{
     color: #fff;
@@ -137,6 +142,11 @@ main{
     flex-direction: column;
     gap: 1vh;
     padding: 0vh 2vh 0vh 2vh;
+    margin-top: 5vh;
+}
+
+.optionsBar{
+    margin-top: 5vh;
 }
 
 .menu h1{
