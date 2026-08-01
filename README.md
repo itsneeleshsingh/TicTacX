@@ -55,6 +55,15 @@ Designed to fit nicely on mobile screens without messing up the buttons or layou
 
 ---
 
+## SEO & Performance Optimization
+
+To ensure the project is search-engine friendly and optimized for web visibility, standard SEO practices were integrated:
+* **Meta Tags & Description:** Added descriptive meta tags (`description`, `keywords`, and `author`) in the HTML head so search crawlers can index the site accurately.
+* **Open Graph Tags:** Included Open Graph social preview meta tags to ensure clean thumbnail and title formatting when shared across platforms like LinkedIn, Twitter, or WhatsApp.
+* **Semantic HTML Structure:** Used proper semantic elements (`<header>`, `<main>`, `<h1>`) to improve accessibility and page indexing scores.
+
+---
+
 ## Tech Stack
 
 * **HTML5** for the page structure.
