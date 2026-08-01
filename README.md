@@ -70,3 +70,9 @@ To ensure the project is search-engine friendly and optimized for web visibility
 * **CSS3** for styling, flexbox layouts, and animations.
 * **JavaScript** for game logic, sounds, theme switching, and the computer AI.
 * **Font Awesome** for icons.
+
+---
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
